@@ -8,7 +8,6 @@ package gameoflife;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JButton;
 
@@ -29,17 +28,13 @@ public final class ClickListener implements ActionListener {
     public void actionPerformed( ActionEvent e )
     {
         String command = e.getActionCommand();
-        System.out.print( command );
-        JButton clicked = null;
         try {
-            clicked = this.buttons.get(command);   
+            JButton clicked = this.buttons.get(command);   
             if( clicked.getBackground() == Color.black )
                 clicked.setBackground( Color.white );
             else
                 clicked.setBackground( Color.black );
         } catch( NullPointerException ex ) { }
-        
 
-            
     }
 }

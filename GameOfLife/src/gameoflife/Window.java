@@ -6,6 +6,7 @@
 package gameoflife;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Insets;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
@@ -23,14 +24,13 @@ import javax.swing.border.LineBorder;
 public final class Window implements Runnable {
     
     private final JFrame frame;
+    private String state = "Start";
     
     public Window( )
     {
         this.frame = new JFrame("Game of life"); 
-        
         this.buildWindow( );        
         this.run( );
-        
     }
     
     /**
@@ -46,20 +46,32 @@ public final class Window implements Runnable {
                 public void run() {
                     buildField();
                 }
-            }, 50, 50);
+            }, 100, 100);
     }
     
     private void buildWindow( )
     { 
-        this.frame.setSize(506,529);
+        this.frame.setSize(506,579);
         this.frame.setResizable(false);
-        this.frame.setLocation( 0,0 );
         this.frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         this.frame.setVisible( true );
+        
+
     }
     
     public void buildField( )
     {
+        JButton bt = new JButton();
+        bt.setBounds(0,500,500,50);
+        bt.setMargin( new Insets( 0,0,0,0 ) );
+        bt.setText( this.state );
+        /*bt.setActionCommand( this.state );
+        bt.addActionListener( new SwitchButton( ) );
+        this.state = this.state.equals("Start") ? "Rebuild" : "Start";*/
+        bt.setBackground(Color.lightGray);
+        bt.setCursor( new Cursor( Cursor.HAND_CURSOR ) );
+        this.frame.add(bt);
+        
         Map<String,JButton> buttons = new HashMap<>();
         for( int y = 0 ; y < 50 ; y++ )
         {
