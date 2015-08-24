@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JButton;
 
 /**
@@ -17,9 +18,9 @@ import javax.swing.JButton;
  */
 public final class ClickListener implements ActionListener {
     
-    private final HashMap<String,JButton> buttons;
+    private final Map<String,JButton> buttons;
     
-    public ClickListener( HashMap<String,JButton> buttons )
+    public ClickListener( Map<String,JButton> buttons )
     {
         this.buttons = buttons;
     }
@@ -29,16 +30,16 @@ public final class ClickListener implements ActionListener {
     {
         String command = e.getActionCommand();
         System.out.print( command );
-        String[] coords = command.split(":");
         JButton clicked = null;
         try {
             clicked = this.buttons.get(command);   
+            if( clicked.getBackground() == Color.black )
+                clicked.setBackground( Color.white );
+            else
+                clicked.setBackground( Color.black );
         } catch( NullPointerException ex ) { }
         
-        if( clicked.getBackground() == Color.black )
-            clicked.setBackground( Color.white );
-        else
-            clicked.setBackground( Color.black );
+
             
     }
 }
